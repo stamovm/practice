@@ -37,12 +37,17 @@ body {
   bottom: 20px;
   left: 20px;
   margin: 0;
-  opacity: 0.3;
+  opacity: 0.1;
+}
+
+.panel.active {
+  flex: 4;
+  color: #f00;
 }
 
 .panel.active h3 {
-  flex: 5;
   opacity: 1;
+  transition: opacity 0.5s ease-in 0.4s;
 }
 
 @media (max-width: 480px) {
@@ -50,7 +55,7 @@ body {
     width: 100vh;
   }
   .panel:nth-of-type(4),
-  ..panel:nth-of-type(5) {
+  .panel:nth-of-type(5) {
     display: none;
   }
 }
