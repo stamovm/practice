@@ -83,6 +83,117 @@ function uniteUnique(arr) {
   return arr2
 }
 
-uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1])
-let i = 0
-i++
+// uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1])
+
+function convertHTML(str) {
+  let result = ''
+  for (let i = 0; i < str.length; i++) {
+    switch (str[i]) {
+      case '&':
+        result += '&amp;'
+        break
+      case '<':
+        result += '&it;'
+        break
+      case '>':
+        result += '&gt;'
+        break
+      case '"':
+        result += '&quot;'
+        break
+      case '`':
+        result += '&apos;'
+        break
+      default:
+        result += str[i]
+        break
+    }
+  }
+  return result
+}
+function convertHTML2(str) {
+  var expressions = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&apos;',
+  }
+  for (var i in expressions) {
+    str = str.replace(new RegExp(i, 'g'), expressions[i])
+  }
+  return str
+}
+// console.log(convertHTML('Hamburgers < Pizza < Tacos'))
+
+function sumFibs(num) {
+  let n = 2
+  let arr = [0, 1]
+  do {
+    //create fib sequence
+    arr.push(arr[n - 1] + arr[n - 2])
+    n++
+  } while (arr[n - 1] <= num)
+  arr.pop() //remove the extra element at the end
+  const filterEven = (n1) => {
+    if (n1 % 2) return n1
+    else return 0
+  }
+  return arr.reduce((sum, cur) => sum + filterEven(cur))
+}
+// console.log(sumFibs(4000000))
+
+function sumPrimes(num) {
+  const isPrime = (n) => {
+    if (n <= 1) return 0
+    for (let i = 2; i < n; i++) if (n % i === 0) return 0
+    console.log(n)
+    return n
+  }
+  let sum = 0
+  for (let i = 2; i <= num; i++) {
+    sum += isPrime(i)
+  }
+  return sum
+}
+// console.log(sumPrimes(977))
+
+function smallestCommons(arr) {
+  const [min, max] = arr.sort((a, b) => a - b)
+  const numberDivisors = max - min + 1
+  // Largest possible value for SCM
+  let upperBound = 1
+  for (let i = min; i <= max; i++) {
+    upperBound *= i
+  }
+  // Test all multiples of 'max'
+  for (let multiple = max; multiple <= upperBound; multiple += max) {
+    // Check if every value in range divides 'multiple'
+    let divisorCount = 0
+    for (let i = min; i <= max; i++) {
+      // Count divisors
+      if (multiple % i === 0) {
+        divisorCount += 1
+      }
+    }
+    if (divisorCount === numberDivisors) {
+      return multiple
+    }
+  }
+}
+// smallestCommons([1, 5])
+
+function dropElements(arr, func) {
+  let i = arr[0]
+  while (arr.length > 0 && !func(i)) {
+    arr.shift()
+    i = arr[0]
+    console.log(i)
+  }
+  console.log(arr)
+  return arr
+}
+
+dropElements([1, 2, 3, 4], function (n) {
+  return n >= 3
+}) // should return [3, 4]
