@@ -194,6 +194,30 @@ function dropElements(arr, func) {
   return arr
 }
 
-dropElements([1, 2, 3, 4], function (n) {
-  return n >= 3
-}) // should return [3, 4]
+// dropElements([1, 2, 3, 4], function (n) {
+//   return n >= 3
+// }) // should return [3, 4]
+
+function steamrollArray(val, flatArr = []) {
+  val.forEach((item) => {
+    if (Array.isArray(item)) steamrollArray(item, flatArr)
+    else flatArr.push(item)
+  })
+  return flatArr
+}
+
+// steamrollArray([1, [2], [3, [[4]]]])
+
+function binaryAgent(str) {
+  var biString = str.split(' ')
+  var uniString = []
+  for (var i = 0; i < biString.length; i++) {
+    uniString.push(String.fromCharCode(parseInt(biString[i], 2)))
+  }
+  return uniString.join('')
+}
+
+// test here
+binaryAgent(
+  '01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111'
+)
