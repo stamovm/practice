@@ -205,7 +205,6 @@ function steamrollArray(val, flatArr = []) {
   })
   return flatArr
 }
-
 // steamrollArray([1, [2], [3, [[4]]]])
 
 function binaryAgent(str) {
@@ -216,8 +215,98 @@ function binaryAgent(str) {
   }
   return uniString.join('')
 }
+// binaryAgent(
+//   '01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111'
+// )
 
-// test here
-binaryAgent(
-  '01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111'
-)
+function truthCheck(collection, pre) {
+  let result = true
+  collection.forEach((item) => {
+    if (!item[pre]) {
+      result = false
+    }
+    console.log(item[pre])
+  })
+  console.log(result)
+  return result
+}
+// truthCheck(
+//   [
+//     { user: 'Tinky-Winky', sex: 'male', age: 0 },
+//     { user: 'Dipsy', sex: 'male', age: 3 },
+//     { user: 'Laa-Laa', sex: 'female', age: 5 },
+//     { user: 'Po', sex: 'female', age: 4 },
+//   ],
+//   'age'
+// )
+
+function addTogether() {
+  const [a, b] = arguments
+  if (typeof a !== 'number') {
+    return undefined
+  } else if (b === undefined) {
+    function addSecond(second) {
+      if (typeof second !== 'number') {
+        return undefined
+      } else {
+        return a + second
+      }
+    }
+    return addSecond
+  } else if (typeof b !== 'number') {
+    return undefined
+  }
+
+  return a + b
+}
+// console.log(addTogether(5)(7))
+
+var Person = function (firstAndLast) {
+  var fullName = firstAndLast
+  // setFirstName(first)
+  // setLastName(last)
+  // setFullName(firstAndLast)
+  // Complete the method below and implement the others similarly
+  this.getFullName = function () {
+    return fullName
+  }
+  this.getFirstName = function () {
+    let first = fullName.split(' ')[0]
+    return first
+  }
+  this.getLastName = function () {
+    let last = fullName.split(' ')[1]
+    return last
+  }
+  this.setFullName = function (name) {
+    fullName = name
+  }
+
+  this.setFirstName = function (first) {
+    fullName = first + ' ' + fullName.split(' ')[1]
+  }
+
+  this.setLastName = function (last) {
+    fullName = fullName.split(' ')[0] + ' ' + last
+  }
+}
+
+// var bob = new Person('Bob Ross')
+// bob.setFullName('Haskell Curry')
+
+// console.log(bob.getLastName())
+
+function orbitalPeriod(arr) {
+  var GM = 398600.4418
+  var earthRadius = 6367.4447
+
+  arr.forEach((orb) => {
+    let a = orb.avgAlt
+    let t = 2 * Math.PI * Math.sqrt(Math.pow(earthRadius + a, 3) / GM)
+    delete orb.avgAlt
+    orb.orbitalPeriod = Math.round(t)
+  })
+  return arr
+}
+// let r = orbitalPeriod([{ name: 'sputnik', avgAlt: 35873.5553 }])
+// console.log(r)
