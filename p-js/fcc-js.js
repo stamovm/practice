@@ -77,23 +77,57 @@ function checkCashRegister(price, cash, cid) {
     TWENTY: 20.0,
     'ONE HUNDRED': 100.0,
   }
-  let status = 'OPEN'
+
   let changeArr = []
-  let sum = cash - price
-  // let cidSum = cid.reduce((s, cur) => s + cur[1], 0)
-  for (let i = cid.length; i >= 0; i--) {
-    const bill = cid[i]
-    console.log(bill)
+  let rest = cash - price
+
+  for (let i = cid.length - 1; i >= 0; i--) {
+    let bills = cid[i]
+    let tmpBills = [bills[0], 0]
+    let bilVal = BILL_VAL[bills[0]]
+    while (bills[1] > 0 && rest > 0) {
+      if (rest >= bilVal) {
+        rest -= bilVal
+        bills[1] -= bilVal
+        tmpBills[1] += bilVal
+        bills[1] = bills[1].toFixed(2)
+        rest = rest.toFixed(2)
+      } else {
+        break
+      }
+    }
+    if (tmpBills[1] > 0) {
+      tmpBills[1] = tmpBills[1]
+      changeArr.push(tmpBills)
+    }
+  }
+
+  let status = 'CLOSED'
+  if (rest > 0) {
+    status = 'INSUFFICIENT_FUNDS'
+    changeArr = []
+  } else status = 'OPEN'
+  let cidSum = cid.reduce((s, cur) => s + cur[1], 0)
+  if (cidSum == 0 && rest == 0) {
+    change.status = 'CLOSED'
+    changeArr.forEach((el) => {
+      cid.forEach((element) => {
+        if (el[0] == element[0]) {
+          element[1] = parseFloat(el[1].toPrecision(1))
+        }
+      })
+    })
+    change.change = cid
+    return change
   }
 
   change.status = status
   change.change = changeArr
-  // change.cidSum = cidSum
-  // change.cid = cid
   return change
 }
-/*
-let r = checkCashRegister(19.5, 20, [
+
+//--------------------------
+let r = checkCashRegister(3.26, 100, [
   ['PENNY', 1.01],
   ['NICKEL', 2.05],
   ['DIME', 3.1],
@@ -103,16 +137,20 @@ let r = checkCashRegister(19.5, 20, [
   ['TEN', 20],
   ['TWENTY', 60],
   ['ONE HUNDRED', 100],
-])*/
-let r = checkCashRegister(19.5, 20, [
-  ['PENNY', 0.01],
+])
+
+let r2 = checkCashRegister(19.5, 20, [
+  ['PENNY', 0.5],
   ['NICKEL', 0],
   ['DIME', 0],
   ['QUARTER', 0],
-  ['ONE', 1],
+  ['ONE', 0],
   ['FIVE', 0],
   ['TEN', 0],
   ['TWENTY', 0],
   ['ONE HUNDRED', 0],
 ])
-console.log(r)
+// should return {status: "CLOSED", change: [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]}
+
+// should return {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]}
+console.log(r2)
