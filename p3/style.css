@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+:root {
+  --menu-color: #8779ff;
+  --link-hover: #d4cffc;
+}
 
 * {
   box-sizing: border-box;
@@ -17,7 +21,8 @@ body {
   transition: transform 0.5s linear;
   width: 100vw;
   min-height: 100vh;
-  padding: 50;
+  padding: 60px;
+  margin: 0;
 }
 
 .container.show-nav {
@@ -36,7 +41,7 @@ body {
 }
 
 .circle {
-  background-color: #8779ff;
+  background-color: var(--menu-color);
   height: 200px;
   width: 200px;
   border-radius: 50%;
@@ -72,22 +77,28 @@ body {
 }
 nav {
   position: fixed;
-  bottom: 40px;
+  bottom: 70px;
   left: 0;
   z-index: 100;
 }
 nav ul {
   list-style: none;
-  padding-left: 30px;
+  padding-left: 26px;
 }
 nav ul li {
   text-transform: uppercase;
-  color: #fff;
-  margin: 40px 0;
-  transform: translateX(-150%);
+  color: var(--menu-color);
+  margin: 45px 0;
+  transform: translateX(-180%);
   transition: transform 0.5s ease-in;
 }
-
+nav ul a {
+  text-decoration: none;
+  color: var(--menu-color);
+}
+nav ul a:hover {
+  color: var(--link-hover);
+}
 nav ul li i {
   font-size: 25px;
   margin-right: 15px;
@@ -98,29 +109,23 @@ nav ul li i {
 }
 nav ul li + li {
   margin-left: 15px;
-  transform: translateX(-150%);
+  transform: translateX(-160%);
 }
 
 nav ul li + li + li {
   margin-left: 30px;
-  transform: translateX(-200%);
+  transform: translateX(-180%);
 }
 .content {
   max-width: 1000px;
   margin: 50px auto;
 }
-.content img {
-  max-width: 100%;
-}
 
 .content h1 {
   margin: 0;
 }
-.content small {
-  color: #555;
-  font-style: italic;
-}
+
 .content p {
-  color: #333;
+  color: #443;
   line-height: 1.6;
 }
