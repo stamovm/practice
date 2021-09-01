@@ -21,7 +21,12 @@ body {
 }
 
 .container.show-nav {
-  transform: rotate(-20deg);
+  transform: rotate(-12deg);
+}
+
+.container.show-nav + nav li {
+  transform: translateX(0);
+  transition-delay: 0.2s;
 }
 
 .circle-container {
@@ -31,12 +36,12 @@ body {
 }
 
 .circle {
-  background-color: #ff7979;
+  background-color: #8779ff;
   height: 200px;
   width: 200px;
   border-radius: 50%;
   position: relative;
-  transition: transform 0.5s linear;
+  transition: transform 0.6s linear;
 }
 .container.show-nav .circle {
   transform: rotate(-70deg);
@@ -63,7 +68,7 @@ body {
 .circle button#close {
   top: 60%;
   transform: rotate(90deg);
-  transform-origin: top;
+  transform-origin: top left;
 }
 nav {
   position: fixed;
@@ -72,20 +77,42 @@ nav {
   z-index: 100;
 }
 nav ul {
+  list-style: none;
+  padding-left: 30px;
+}
+nav ul li {
   text-transform: uppercase;
   color: #fff;
   margin: 40px 0;
-  transform: translateX(-100);
+  transform: translateX(-150%);
   transition: transform 0.5s ease-in;
 }
 
-nav ul li .content img {
+nav ul li i {
+  font-size: 25px;
+  margin-right: 15px;
+}
+
+.content img {
   max-width: 100%;
+}
+nav ul li + li {
+  margin-left: 15px;
+  transform: translateX(-150%);
+}
+
+nav ul li + li + li {
+  margin-left: 30px;
+  transform: translateX(-200%);
 }
 .content {
   max-width: 1000px;
   margin: 50px auto;
 }
+.content img {
+  max-width: 100%;
+}
+
 .content h1 {
   margin: 0;
 }
