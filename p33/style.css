@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --fg-color: #dce2eb;
+  --bg-color: #487ec5;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding-top: 3rem;
+}
+
+.new-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  color: var(--fg-color);
+  background-color: var(--bg-color);
+  border: none;
+
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0.4rem 0.7rem;
+}
+
+.note {
+  background-color: var(--fg-color);
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.1);
+  height: 400px;
+  width: 360px;
+  margin: 24px 18px;
+}
+.note .note-btns {
+  display: flex;
+  justify-content: flex-end;
+  background-color: var(--bg-color);
+  padding: 0.4rem;
+}
+
+.note .note-btns button {
+  background-color: transparent;
+  color: var(--fg-color);
+  border: none;
+  font-size: 1rem;
+  margin-left: 0.4rem;
+}
+.note textarea {
+  background-color: var(--fg-color);
+  outline: none;
+  font-family: inherit;
+  font-size: 1.1rem;
+  border: none;
+  height: 364px;
+  width: 100%;
+  padding: 15px;
+}
