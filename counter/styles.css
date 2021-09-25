@@ -1,0 +1,38 @@
+main {
+  display: grid;
+  place-items: center;
+}
+.btn {
+  color: var(--btn-color, black);
+  border: 2px solid;
+  padding: 0.5em 1.5em;
+  margin-right: 0.5em;
+  cursor: pointer;
+  border-radius: 0.5em;
+  text-transform: uppercase;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: color 0.6s ease-out;
+}
+
+.btn:hover,
+.btn:focus {
+  color: white;
+
+  background: var(--btn-color, black);
+}
+.btn-green {
+  --btn-color: green;
+}
+.btn-red {
+  --btn-color: red;
+}
+#value {
+  font-size: 6rem;
+  font-weight: bold;
+}
+
+.container {
+  background-color: fff;
+  width: 350px;
+  text-align: center;
+}
