@@ -6,8 +6,7 @@ button.addEventListener('click', () => {
   input.focus()
 })
 input.addEventListener('keyup', (event) => {
-  // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13) {
+  if (event.key === 'Enter') {
     window.open('https://www.google.com/search?q=' + input.value)
   }
 })
