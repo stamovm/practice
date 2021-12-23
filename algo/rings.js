@@ -6,7 +6,7 @@ rings1 = 'B0R0G0R9R0B0G0'
 
 var countPoints = function (rings) {
   const arr = rings.split('')
-  rods = {}
+  let rods = {}
   for (let i = 1; i < arr.length; i += 2) {
     if (!rods[arr[i]]) rods[arr[i]] = arr[i - 1]
     rods[arr[i]] += arr[i - 1]
