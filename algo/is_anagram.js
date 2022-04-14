@@ -2,8 +2,7 @@
  * @param {string} s
  * @param {string} t
  * @return {boolean}
- */
-const s = 'ra1Rrt'
+ */ const s = 'ra1Rrt'
 const t = 'ta1Rrr'
 
 var isAnagram = function (s, t) {
