@@ -3,7 +3,7 @@
  * @return {number}
  */
 
-let nums = [1, 1, 2]
+let nums1 = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
 
 var removeDuplicates = function (nums) {
   let result = []
@@ -17,4 +17,19 @@ var removeDuplicates = function (nums) {
   return result
 }
 
-console.log(removeDuplicates(nums))
+//remove duplicates in place
+const removeDuplicatesInPlace = (nums) => {
+  let i = 0
+  while (i < nums.length) {
+    if (nums[i] === nums[i + 1]) {
+      let c = i
+      while (nums[c] === nums[c + 1]) {
+        c++
+      }
+      nums.splice(i, c - i)
+    } else i++
+  }
+  return nums.length
+}
+
+console.log(removeDuplicatesInPlace(nums1), nums1)
